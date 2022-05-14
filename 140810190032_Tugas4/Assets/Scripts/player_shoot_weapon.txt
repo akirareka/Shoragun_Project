@@ -1,0 +1,58 @@
+PLAYER SHOOT
+
+using UnityEngine;
+
+
+using UnityEngine.Networking;
+
+public class PlayerShoot : NetworkBehaviour
+{
+    public PlayerWeapon weapon;
+
+    [SerializeField]
+    private Camera cam;
+
+    [SerializeField]
+    private LayerMask mask;
+
+    private void Start()
+    {
+        if (cam == null)
+        {
+            Debug.LogError("PlayerShoot: No Camera Refferenced");
+            this.enabled = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            PlayerShoot();
+        }
+    }
+
+    void Shoot()
+    {
+        RaycastHit _hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, weapon.range, mask))
+        {
+            Debug.Log("We hit " + _hit.collider.name);
+        }
+
+    }
+}
+
+
+PLAYER WEAPON
+
+using UnityEngine;
+
+[System.Serializable]
+public class PlayerWeapon
+{
+    public string name = "M16A4";
+
+    public float damage = 10f;
+    public float range = 100f;
+}
