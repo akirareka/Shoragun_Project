@@ -6,6 +6,6 @@ public class DiscordLink : MonoBehaviour
 {
     public void OpenChannel()
     {
-        Application.OpenURL("https://discord.gg/Kxzr8wqN");
+        Application.OpenURL("https://discord.gg/DGA8cWx5");
     }
 }
