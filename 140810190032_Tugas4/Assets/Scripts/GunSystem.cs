@@ -39,7 +39,7 @@ public class GunSystem : MonoBehaviour
         MyInput();
         text.SetText(bulletsLeft + " / " + magazineSize);
 
-        if (Score >= 20)
+        if (Score >= 30)
         {
             YouWin();
         }
@@ -73,6 +73,7 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
+            FindObjectOfType<AudioManager>().Play("tembakan");
             Debug.Log(rayHit.collider.name);
 
             if (rayHit.collider.CompareTag("Enemy")) { 
@@ -80,6 +81,7 @@ public class GunSystem : MonoBehaviour
 
                 Instantiate(attackPoint, rayHit.point, Quaternion.LookRotation(rayHit.normal));
                 PlusScore();
+                FindObjectOfType<AudioManager>().Play("ledakan");
             }
         }
 

@@ -17,13 +17,13 @@ public class SpawnerHard : MonoBehaviour
 
     IEnumerator TargetDrop()
     {
-        while (targetCount < 21)
+        while (targetCount < 35)
         {
             xPos = Random.Range(-10, 11);
             zPos = Random.Range(10, 31);
             yPos = Random.Range(0.61f, 5);
             Instantiate(target, new Vector3(xPos, yPos, zPos), Quaternion.identity);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             targetCount += 1;
         }
     }
