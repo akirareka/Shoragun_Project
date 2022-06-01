@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 280334937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 625281543}
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play_hard
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &280334937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +914,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1255707361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 625281543}
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play_normal
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1255707361
 MonoBehaviour:
   m_ObjectHideFlags: 0

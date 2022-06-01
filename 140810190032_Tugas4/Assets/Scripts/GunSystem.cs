@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GunSystem : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class GunSystem : MonoBehaviour
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
 
+
     //Bools
     bool shooting, readyToShoot, reloading;
 
@@ -18,10 +21,12 @@ public class GunSystem : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    public int Score;
+    public string sceneName;
 
     //Graphics
     public GameObject muzzleFlash, bulletHoleGraphic;
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI text, ScoreText;
 
     private void Awake()
     {
@@ -33,6 +38,11 @@ public class GunSystem : MonoBehaviour
     {
         MyInput();
         text.SetText(bulletsLeft + " / " + magazineSize);
+
+        if (Score >= 20)
+        {
+            YouWin();
+        }
     }
 
     private void MyInput()
@@ -65,8 +75,12 @@ public class GunSystem : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
 
-            if (rayHit.collider.CompareTag("Enemy"))
-                rayHit.collider.GetComponent<Target>().TakeDamage(damage);
+            if (rayHit.collider.CompareTag("Enemy")) { 
+                Destroy(rayHit.transform.gameObject);
+
+                Instantiate(attackPoint, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+                PlusScore();
+            }
         }
 
         bulletsLeft--;
@@ -93,9 +107,19 @@ public class GunSystem : MonoBehaviour
         Invoke("ReloadFinished", reloadTime);
     }
 
+    void PlusScore()
+    {
+        Score++;
+        ScoreText.text = Score.ToString();
+    }
+
     private void ReloadFinished()
     {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+    void YouWin()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
